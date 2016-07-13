@@ -15,15 +15,19 @@
 		<li><a href="#home"><b>Internet das Coisas</b></a></li>
 		<li><a href="#intro"><b>Introdução</b></a></li>
 		<li><a href="#hist"><b>História</b></a></li>
+		<li><a href="#atualidades"><b>Atualidades</b></a></li>
+		<li><a href="#commonuser">Para o Usuário Comum</a></li>
+		<li><a href="#business">Nos Negócios</a></li>
+		<li><a href="#aplicacao"><b>Camada de Aplicação</b></a></li>
+		<li><a href="#mqtt">MQTT</a></li>
+		<li><a href="#coap">CoAP</a></li>
+		<li><a href="#teccom"><b>Tecnologias de Comunicação</b></a></li>
 		<li><a href="#desafios"><b>Desafios</b></a></li> 
 		<li><a href="#energia">Energia</a></li> 
 		<li><a href="#escalabilidade">Escalabilidade</a></li> 
 		<li><a href="#padronizacao">Padronização</a></li> 
-		<li><a href="#privacidade">Privacidade</a></li>
 		<li><a href="#probcomp">Problemas Computacionais</a></li>  
-		<li><a href="#atualidades"><b>Atualidades</b></a></li>
-		<li><a href="#commonuser">Para o Usuário Comum</a></li>
-		<li><a href="#business">Nos Negócios</a></li>
+		<li><a href="#privacidade">Privacidade</a></li>
 		<li><a href="#qps"><b>Questões Políticas e Sociais</b></a></li>
         <li><a href="#pdp">O Problema da Privacidade</a></li>
         <li><a href="#sindic">IdC e a realidade sindical brasileira</a></li>
@@ -52,131 +56,9 @@
 			Mais a fundo, também afirmou que se nossos computadores soubessem tudo sobre as coisas, usando dados colhidos sem qualquer interação humana, poderíamos monitorar e mensurar tudo, aumentando a eficiência ao reduzir o desperdício e o custo. Ainda deve-se saber, para isso, quando as coisas precisariam ser substituídas, reparadas ou atualizadas.
 		    </p>
 
-		    <h3 id="desafios"> Desafios </h3>
-		    <ul>
-		    	<li><h4 id="energia">Energia</h4></li>
-		    	<p>
-		    	Um dos maiores desafios para uma implantação mais intensa da IdC é a fonte de energia para os sensores, que deve ser autossustentável em vários casos, especialmente em lugares de difícil acesso, onde a manutenção seria extremamente cara.
-		    	</p>
-		    	<p> Pode-se diminuir este problema por duas abordagens distintas: reduzindo o consumo de energia ou tornando os dispositivos independente de baterias.
-		    	</p>
-		    	<ul>
-		    		<li>Reduzindo o consumo de energia</li>
-		    		<p>Por esta proposta, conta-se com processadores que consumirão consideravelmente pouca energia para coleta, análise e transmissão de dados. Esta economia deriva não apenas do <i>hardware</i>, mas também do <i>software</i>. Algumas soluções para esta abordagem são: técnicas eficientes de compressão e de codificação, roteamento e protocolos otimizados para a energia (por exemplo, só permitindo a transmissão de dados relevantes) e retransmissões cooperativas. </p>
-		    		<li>Independência de baterias</li>
-		    		<p>Já existem sensores sem fio que podem coletar e transmitir dados sem a necessidade de uma bateria imbutida. Isto pode ocorrer tanto através da captação autossuficiente de energia quanto usando sensores passivos. </p> <ul>
-		    		<li>O primeiro se dá quando elementos externos (como vibrações, luz, ventos  etc.) são usados para a geração de eletricidade. Algumas possibilidades são: células solares, elementos termoelétricos, ou piezoelétricos, isto é, que convertem pressão em eletricidade (por exemplo, já existe um nanogerador que produz eletricidade através de movimentos corporais como a pressão com os dedos). Estes são apenas exemplos de soluções que permitirão que os dispositivos se mantenham conectados. </li>
-		    		<li>Os sensores passivos coletam dados através da detecção de fenômenos do meio ambiente, como vibrações, luz, radiação, calor etc. Suas alimentações de eletricidade podem ser remotas. Por exemplo, alguns sensores passivos utilizam a radiação eletromagnética proveniente do Sol e refletida pela superfície terrestre como energia, outros podem recebê-la remotamente, sendo emitida para eles na forma de ondas de rádio de alta frequência. </li>
-		    		</ul>
-		    	</ul>
-		    	<li><h4 id="escalabilidade">Escalabilidade</h4></li>
-		    	<p>
-		    	A Internet das Coisas tem potencialmente uma escala muito maior do que a internet convencional de computadores, com estimativas de dezenas ou centenas de bilhões de dispositivos conectados, cada um precisando de um endereço único. O protocolo de endereçamento mais utilizado atualmente é o IPv4, que é limitado a menos de 5 bilhões de endereços. Em contrapartida, há o protocolo IPv6, menos difundido, que conta com mais de 340 trilhões de trilhões de trilhões de endereços. Um grande desafio se encontra justamente em tornar este protocolo o principal meio de endereçar dispositivos.
-		    	</p>
-				<p>
-				Por outro lado, já existe a mobilização para tornar isso uma realidade, com ações para fomentar a adoção do IPv6 ou apenas conscientizar a população, como, por exemplo, a <a href="http://cgi.br/resolucoes/documento/2013/033">resolução do Comitê Gestor da Internet no Brasil (CGI) com recomendações sobre a implantação do IPv6</a> , o <a href="https://www.google.com/intl/pt-BR/ipv6/">site informativo do Google</a> e o “Lançamento Oficial do IPv6”, ocorrido em 6 de junho de 2012, evento organizado pela <a href="http://www.internetsociety.org/">Internet Society </a>que foi o dia em que muitos websites e Provedores de Serviços de Internet (ISPs) começaram a transição do IPv4 para o IPv6.
-		    	</p>
-		    	<li><h4 id="padronizacao">Padronização</h4></li>
-		    	<p> 
-		    	Não ocorre ainda uma adoção maior da Internet das Coisas devido à falta de um protocolo único. Deve haver um consenso sobre os padrões, de modo que permitam a interoperabilidade e integração entre os sensores e computadores de diferentes provedores de tecnologia. Atualmente, grandes grupos concorrem pelo padrão de comunicação.
-		    	<ul>
-		    		<li><a href="https://allseenalliance.org">AllSeen Alliance</a></li>
-		    		<p>
-		    		Esta organização sem fins lucrativos visa a adoção massiva de produtos que suportem a Internet das Coisas, usando o AllJoyn, seu framework universal de desenvolvimento. Este sistema foi desenvolvido pela Qualcomm, e hoje conta com o apoio de grandes empresas do ramo tecnológico, como a Canon, Electrolux, LG, Microsoft, Philips, Sharp e Sony. É um protocolo de código aberto que permite o desenvolvimento de aplicativos para dispositivos conectados em uma rede Wi-Fi.
-		    		</p>
-		    		<p>
-					Utiliza uma arquitetura cliente-servidor, onde o servidor é um dispositivo ou aplicativo que se anuncia a fim de que o cliente possa descobrí-lo. Ao se anunciar, compartilha informações como o modelo, a versão, o número da porta para o serviço e o identificador único do dispositivo ou aplicativo.
-					</p>
-					<div align="center">
-					<img src="img/AllJoynDiscovery.png" alt="AllJoyn Discovery">
-					<p style="font-size:90%;">Processo de Descobrimento na Arquitetura AllJoyn
-					<br>Extraído de: <a href="https://allseenalliance.org/framework/documentation/learn/core/about-announcement/interface"> https://allseenalliance.org/framework/documentation/learn/core/about-announcement/interface</a>
-					</p>
-					</div>
-					<p>
-					Para o transporte, utiliza tanto TCP quanto UDP. Possibilita comunicação pela Internet (com fio ou Wi-Fi), por Bluetooth, por Redes Locais entre outros. Nas camadas física e de enlace, pode ser usado, por exemplo, o padrão IEEE 802.11, no caso de redes Wi-Fi.
-					</p>
-					<div align="center">
-					<img src="img/AllJoynProtocolStack.png" alt="AllJoyn Protocol Stack">
-					<p style="font-size:90%;">Pilha de Protocolos para o AllJoyn
-					<br> Adaptado de: <a href="https://allseenalliance.org/framework/documentation/learn/core/system-description/system-architecture">https://allseenalliance.org/framework/documentation/learn/core/system-description/system-architecture</a>
-					</p>
-					</div>
-		    		<li><a href="https://openconnectivity.org/"> Open Connectivity Foundation (OCF)</a></li>
-		    		<p>
-		    		Esta entidade tem por objetivo ajudar a unificar os padrões de IdC, de modo que empresas e desenvolvedores possam criar produtos ou aparelhos que trabalhem juntos. Com seus protocolos, especificações e projetos open source, vários serviços e aparelhos poderão se comunicar de forma segura e transparente. Conta com membros importantes, sendo os principais: Arris, CableLabs, Cisco, Electrolux, GE Digital, Intel, Microsoft, Qualcomm e Samsung.
-					</p>
-					<p>
-					O framework deste grupo chama-se IoTivity, e utiliza o Protocolo de Aplicação Restrita (<a href="#coap"> <!-- ALTERAR A ÂNCORA SE FOR NECESSÁRIO --> CoAP</a>), já que visa dispositivos com baixa capacidade de processamento. Para a camada de transporte, faz uso do protocolo UDP. Nota-se pela imagem que pretende futuramente se adequar ao protocolo HTTP junto ao TCP. À esquerda, temos o bloco unificado. À direita, o mesmo para dispositivos limitados.
-		    		</p>
-		    		<div align="center">
-		    		<img src="img/IoTivityProtocolStack.png" alt="IoTivity Protocol Stack">
-		    		<p style="font-size:90%;">Pilha de Protocolos para o IoTivity
-		    		<br>Extraído de: <a href="https://www.iotivity.org/documentation/linux/programmers-guide">https://www.iotivity.org/documentation/linux/programmers-guide</a>
-		    		</p>
-		    		</div>
-		    		<li><a href="http://www.threadgroup.org/">Thread Group</a></li>
-		    		<p>
-		    		Este grupo de empresas foi criado pela empresa Nest, adquirida pelo Google em 2014. Deste grupo, são membras grandes empresas do ramo tecnológico, como Intel, LG, Microsoft, Philips, Qualcomm e Samsung. O foco principal do Thread é levar a Internet das Coisas para as casas, tornando-as inteligentes.
-		    		</p>
-					<p>
-					Utiliza padrões abertos, além dos protocolos IPv6 e 6LoWPAN (IPv6 aplicado a redes pessoais sem fio de baixa potência). Este último tem a ideia central de expandir o Protocolo da Intenet (IP) a dispositivos com capacidade de processamento e energia mais limitadas. A abordagem do Thread às conexões sem fio oferece vantagens principalmente em segurança e confiabilidade, sem ponto único de falha, por exemplo. Para a camada de transporte, usa o protocolo UDP. Além disso, utiliza o padrão IEEE 802.15.4, que especifica o meio físico (PHY) e a camada de enlace, através do Controle de Acesso ao Meio (MAC), para Redes Sem Fio Pessoais de Baixa Velocidade (LR-WPANs).
-					</p>
-					<div align="center">
-					<img src="img/ThreadProtocolStack.jpg" height="50%" width="50%">
-					<p style="font-size:90%;">Pilha de Protocolos para o Thread
-					<br>Extraído de: <a href=" http://threadgroup.org/technology/ourtechnology">http://threadgroup.org/technology/ourtechnology</a>
-					</p>
-					</div>
-					<li><a href="https://developer.apple.com/homekit/">Apple HomeKit</a></li>
-					<p>
-					Sem nenhuma ligação com os outros grupos, a Apple desenvolveu seu próprio framework para casas inteligentes. É um projeto de código fechado, e exige que todos os dispositivos tenham a licença MFi (Made for iOS). O protocolo usado, HAP (HomeKit Accessory Protocol), é proprietário e define dois mecanismos de transporte: IP e o módulo Bluetooth de baixa energia. Acima da camada de transporte, está a API de controle que permite a interação com os dispositivos.
-					</p>
-					<li><a href="https://developers.google.com/brillo/">Google Brillo</a></li>
-					<p>
-					Brillo é a solução da Google para a Internet das Coisas, contando com parceria das seguintes empresas: Intel, Marvell, Qualcomm, NXP e Imagination. A intenção é trazer velocidade, simplicidade e segurança ao desenvolvimento de aplicações para dispositivos pequenos e com pouca capacidade de processamento e memória, contando com Sistema Operacional embarcado (open source e baseado em Android), serviços essenciais que permitem uma experiência inicial além de operar com escalabilidade, e um kit de desenvolvimento contendo ferramentas para construir produtos.
-					</p>
-					<p>
-					O Sistema Operacional Brillo utilizará o protocolo <a href="https://developers.google.com/weave/">Weave</a> para a comunicação entre dispositivos. Este utiliza os protocolos HTTPS e TCP, e suporta, dentre outros, os seguintes padrões: Wi-Fi, Ethernet, IEEE 802.15.4, utilizado também  pelo ZigBee e pelo Thread (e cujo acesso ao meio se baseia no protocolo CSMA-CA, acrônimo de Carrier Sense Multiple Access with Collision Avoidance). O usuário pode comunicar-se com o dispositivo ou sensor localmente via Bluetooth de baixa energia ou, caso o acesso seja remoto, utilizando serviços em nuvem via Wi-Fi.
-					</p>
-					<div align="center">
-					<img src="img/WeaveProtocol.jpg" alt="Weave Protocol">
-					<p>
-					Protocolo Weave
-					<br>Extraído de: <a href="http://events.linuxfoundation.org/sites/events/files/slides/Brillo%20and%20Weave%20-%20Introduction_v3_1.pdf ">http://events.linuxfoundation.org/sites/events/files/slides/Brillo%20and%20Weave%20-%20Introduction_v3_1.pdf </a>
-					</p>
-					</div>
-		    	</ul>
-		    	</p>
-		    	<li><h4 id="privacidade">Privacidade</h4></li>
-		    	<p>
-		    	Considerando-se os massivos volumes de dados envolvidos, e a crescente preocupação com a privacidade, devem ser amplamente discutidas quais informações podem ser obtidas, usadas ou compartilhadas. Para isso, devem surgir padrões e práticas comuns, para garantir a segurança das informações.
-		    	</p>
-		    	<p>
-		    	Por ser um assunto que envolve fatores humanos, este problema será discutido com mais detalhes na seção <a href="#pdp">O Problema da Privacidade.</a>
-		    	</p>
-		    	<li><h4 id="probcomp">Problemas computacionais</h4></li>
-		    	<p>
-		    	Conforme cresce a quantidade de dispositivos conectados, aumenta também a quantidade de dados gerados e transmitidos. Um problema que surge, portanto, é relacionado ao gerenciamento desses dados e à capacidade de transformá-los em informações úteis, auxiliando no processo de tomada de decisões e impulsionando ações concretas, conforme a Internet das Coisas potencialmente promete.
-		    	</p>
-		    	<p>
-				Surgem, portanto, desafios relacionados à manipulação e análise dos dados coletados. Neste contexto, vem aumentando o número de soluções que usam tecnologias de Big Data ou de Computação em Nuvem e que podem resolver este problema, ou pelo menos diminuí-lo.
-				</p>
-				<p>
-				Além disso, podemos notar que a Internet das Coisas necessitará de uma infraestrutura distribuída em larga escala para atender a demanda de vários dispositivos se conectando ao mesmo tempo. Neste aspecto, há uma carência enorme pela capacidade de rede. Haverá uma frequência relevante de um grande volume de dados trafegando na internet e, por consequência, precisaremos de maior abrangência do acesso a rede e infraestruturas de armazenamento desses dados.
-				</p>
-				<p>
-				A tecla mais pressionada ultimamente sobre a IdC é a questão da segurança. Bilhões de dispositivos conectados na rede significam bilhões de portas de acesso possíveis para uma invasão virtual. É crucial que cada um desses novos aparelhos esteja assegurado contra eventuais tentativas de hacking. Por exemplo, uma empresa de IdC no Reino Unido implantou suas lâmpadas e interruptores inteligentes em uma casa e pediu a um hacker para tentar acessar o computador pessoal dos moradores da casa. Através de uma dessas lâmpadas inteligentes que estava conectada à rede no momento, o hacker criou uma porta que abriu caminho direto para os PCs da casa.
-				</p>
-				<p>
-				Outra questão se deve à maneira como os servidores são preparados para atender a demanda atualmente. Pensando mais em um grande volume de dados e menos dispositivos, as infraestruturas de redes conseguem atender minimamente a população de uma grande cidade. Porém, a IdC criará um novo paradigma. Com mais dispositivos que geram menos volume de dados individualmente, os Data Centers podem não conseguir ter a disponibilidade de atender todos ao mesmo tempo. Isso será um gargalo em situações mais emergenciais, como situações médicas. Sem um dimensionamento adequado, os problemas que necessitam de atendimento imediato não serão rastreados prontamente, descartando o propósito inicial da IdC de sempre estar conectado.
-				</p>
-		    </ul>
 
 		    <h3 id="atualidades"> Atualidades: IdC na prática </h3>
 		    <h4 id="commonuser">Para o usuário comum</h4>
-			<!--
-			<button title="Click to show/hide content" type="button" onclick="if(document.getElementById('atualidadesComum').style.display=='none') {document.getElementById('atualidadesComum').style.display=''}else{document.getElementById('atualidadesComum').style.display='none'}">Ver ou esconder texto</button>-->
 			<div id="atualidadesComum"> 
 		    <p>
 		   	A tecnologia existe para melhorar a qualidade de vida. A Internet das Coisas se enquadra perfeitamente nesta definição. Segundo Samuel Rodrigues, analista de mercado da consultoria IDC, “a grande vantagem da Internet das Coisas é colocar inteligência na automatização de processos”. Desde a automatização domiciliar até o monitoramento remoto de pacientes, a IdC já encontrou lugar em uma série de setores que impactam diariamente a vida de várias pessoas.
@@ -206,6 +88,134 @@
 			<p>
 			Além disso, a coleta de dados ajudará  estabelecimento a organizar melhor seus estacionamentos e se preparar para horários de pico. Assim, vemos que a IdC gera valor a qualquer negócio que esteja disposto a entrar nesta nova era tecnológica.
 			</p>
+
+			<h3 id="aplicacao">Camada de Aplicação</h3>
+			<h4 id="mqtt">MQTT</h4>
+			<h4 id="coap">CoAP</h4>
+			<h3 id="teccom">Tecnologias de Comunicação</h3>
+			
+
+		    <h3 id="desafios"> Desafios </h3>
+		    <ul>
+		    	<li><h4 id="energia">Energia</h4></li>
+		    	<p>
+		    	Um dos maiores desafios para uma implantação mais intensa da IdC é a fonte de energia para os sensores, que deve ser autossustentável em vários casos, especialmente em lugares de difícil acesso, onde a manutenção seria extremamente cara.
+		    	</p>
+		    	<p> Pode-se diminuir este problema por duas abordagens distintas: reduzindo o consumo de energia ou tornando os dispositivos independente de baterias.
+		    	</p>
+		    	<ul>
+		    		<li>Reduzindo o consumo de energia</li>
+		    		<p>Por esta proposta, conta-se com processadores que consumirão consideravelmente pouca energia para coleta, análise e transmissão de dados. Esta economia deriva não apenas do <i>hardware</i>, mas também do <i>software</i>. Algumas soluções para esta abordagem são: técnicas eficientes de compressão e de codificação, roteamento e protocolos otimizados para a energia (por exemplo, só permitindo a transmissão de dados relevantes) e retransmissões cooperativas. </p>
+		    		<li>Independência de baterias</li>
+		    		<p>Já existem sensores sem fio que podem coletar e transmitir dados sem a necessidade de uma bateria imbutida. Isto pode ocorrer tanto através da captação autossuficiente de energia quanto usando sensores passivos. </p> <ul>
+		    		<li>O primeiro se dá quando elementos externos (como vibrações, luz, ventos  etc.) são usados para a geração de eletricidade. Algumas possibilidades são: células solares, elementos termoelétricos, ou piezoelétricos, isto é, que convertem pressão em eletricidade (por exemplo, já existe um nanogerador que produz eletricidade através de movimentos corporais como a pressão com os dedos). Estes são apenas exemplos de soluções que permitirão que os dispositivos se mantenham conectados. </li>
+		    		<li>Os sensores passivos coletam dados através da detecção de fenômenos do meio ambiente, como vibrações, luz, radiação, calor etc. Suas alimentações de eletricidade podem ser remotas. Por exemplo, alguns sensores passivos utilizam a radiação eletromagnética proveniente do Sol e refletida pela superfície terrestre como energia, outros podem recebê-la remotamente, sendo emitida para eles na forma de ondas de rádio de alta frequência. </li>
+		    		</ul>
+		    	</ul>
+		    	<li><h4 id="escalabilidade">Escalabilidade</h4></li>
+		    	<p>
+		    	A Internet das Coisas tem potencialmente uma escala muito maior do que a internet convencional de computadores, com estimativas de dezenas ou centenas de bilhões de dispositivos conectados, cada um precisando de um endereço único. O protocolo de endereçamento mais utilizado atualmente é o IPv4, que é limitado a menos de 5 bilhões de endereços. Em contrapartida, há o protocolo IPv6, menos difundido, que conta com mais de 340 trilhões de trilhões de trilhões de endereços. Um grande desafio se encontra justamente em tornar este protocolo o principal meio de endereçar dispositivos.
+		    	</p>
+				<p>
+				Por outro lado, já existe a mobilização para tornar isso uma realidade, com ações para fomentar a adoção do IPv6 ou apenas conscientizar a população, como, por exemplo, a <a href="http://cgi.br/resolucoes/documento/2013/033">resolução do Comitê Gestor da Internet no Brasil (CGI) com recomendações sobre a implantação do IPv6</a> , o <a href="https://www.google.com/intl/pt-BR/ipv6/">site informativo do Google</a> e o “Lançamento Oficial do IPv6”, ocorrido em 6 de junho de 2012, evento organizado pela <a href="http://www.internetsociety.org/"><i>Internet Society </i></a>que foi o dia em que muitos websites e Provedores de Serviços de Internet (ISPs) começaram a transição do IPv4 para o IPv6.
+		    	</p>
+		    	<li><h4 id="padronizacao">Padronização</h4></li>
+		    	<p> 
+		    	Não ocorre ainda uma adoção maior da Internet das Coisas devido à falta de um protocolo único. Deve haver um consenso sobre os padrões, de modo que permitam a interoperabilidade e integração entre os sensores e computadores de diferentes provedores de tecnologia. Atualmente, grandes grupos concorrem pelo padrão de comunicação.
+		    	<ul>
+		    		<li><a href="https://allseenalliance.org"><i>AllSeen Alliance</i></a></li>
+		    		<p>
+		    		Esta organização sem fins lucrativos visa a adoção massiva de produtos que suportem a Internet das Coisas, usando o AllJoyn, seu <i>framework</i> universal de desenvolvimento. Este sistema foi desenvolvido pela Qualcomm, e hoje conta com o apoio de grandes empresas do ramo tecnológico, como a Canon, Electrolux, LG, Microsoft, Philips, Sharp e Sony. É um protocolo de código aberto que permite o desenvolvimento de aplicativos para dispositivos conectados em uma rede Wi-Fi.
+		    		</p>
+		    		<p>
+					Utiliza uma arquitetura cliente-servidor, onde o servidor é um dispositivo ou aplicativo que se anuncia a fim de que o cliente possa descobrí-lo. Ao se anunciar, compartilha informações como o modelo, a versão, o número da porta para o serviço e o identificador único do dispositivo ou aplicativo.
+					</p>
+					<div align="center">
+					<img src="img/AllJoynDiscovery.png" alt="AllJoyn Discovery">
+					<p style="font-size:90%;">Processo de Descobrimento na Arquitetura AllJoyn
+					<br>Extraído de: <a href="https://allseenalliance.org/framework/documentation/learn/core/about-announcement/interface"> https://allseenalliance.org/framework/documentation/learn/core/about-announcement/interface</a>
+					</p>
+					</div>
+					<p>
+					Para o transporte, utiliza tanto TCP quanto UDP. Possibilita comunicação pela Internet (com fio ou Wi-Fi), por Bluetooth, por Redes Locais entre outros. Nas camadas física e de enlace, pode ser usado, por exemplo, o padrão IEEE 802.11, no caso de redes Wi-Fi.
+					</p>
+					<div align="center">
+					<img src="img/AllJoynProtocolStack.png" alt="AllJoyn Protocol Stack">
+					<p style="font-size:90%;">Pilha de Protocolos para o AllJoyn
+					<br> Adaptado de: <a href="https://allseenalliance.org/framework/documentation/learn/core/system-description/system-architecture">https://allseenalliance.org/framework/documentation/learn/core/system-description/system-architecture</a>
+					</p>
+					</div>
+		    		<li><a href="https://openconnectivity.org/"> <i>Open Connectivity Foundation</i> (OCF)</a></li>
+		    		<p>
+		    		Esta entidade tem por objetivo ajudar a unificar os padrões de IdC, de modo que empresas e desenvolvedores possam criar produtos ou aparelhos que trabalhem juntos. Com seus protocolos, especificações e projetos de código aberto, vários serviços e aparelhos poderão se comunicar de forma segura e transparente. Conta com membros importantes, sendo os principais: Arris, CableLabs, Cisco, Electrolux, GE Digital, Intel, Microsoft, Qualcomm e Samsung.
+					</p>
+					<p>
+					O <i>framework</i> deste grupo chama-se IoTivity, e utiliza o Protocolo de Aplicação Restrita (<a href="#coap">CoAP</a>), já que visa dispositivos com baixa capacidade de processamento. Para a camada de transporte, faz uso do protocolo UDP. Nota-se pela imagem que pretende futuramente se adequar ao protocolo HTTP junto ao TCP. À esquerda, temos o bloco unificado. À direita, o mesmo para dispositivos limitados.
+		    		</p>
+		    		<div align="center">
+		    		<img src="img/IoTivityProtocolStack.png" alt="IoTivity Protocol Stack">
+		    		<p style="font-size:90%;">Pilha de Protocolos para o IoTivity
+		    		<br>Extraído de: <a href="https://www.iotivity.org/documentation/linux/programmers-guide">https://www.iotivity.org/documentation/linux/programmers-guide</a>
+		    		</p>
+		    		</div>
+		    		<li><a href="http://www.threadgroup.org/"><i>Thread Group</i></a></li>
+		    		<p>
+		    		Este grupo de empresas foi criado pela empresa Nest, adquirida pelo Google em 2014. Deste grupo, são membras grandes empresas do ramo tecnológico, como Intel, LG, Microsoft, Philips, Qualcomm e Samsung. O foco principal do Thread é levar a Internet das Coisas para as casas, tornando-as inteligentes.
+		    		</p>
+					<p>
+					Utiliza padrões abertos, além dos protocolos IPv6 e 6LoWPAN (IPv6 aplicado a redes pessoais sem fio de baixa potência). Este último tem a ideia central de expandir o Protocolo da Intenet (IP) a dispositivos com capacidade de processamento e energia mais limitadas. A abordagem do Thread às conexões sem fio oferece vantagens principalmente em segurança e confiabilidade, sem ponto único de falha, por exemplo. Para a camada de transporte, usa o protocolo UDP. Além disso, utiliza o padrão IEEE 802.15.4, que especifica o meio físico (PHY) e a camada de enlace, através do Controle de Acesso ao Meio (MAC), para Redes Sem Fio Pessoais de Baixa Velocidade (LR-WPANs).
+					</p>
+					<div align="center">
+					<img src="img/ThreadProtocolStack.jpg" height="50%" width="50%">
+					<p style="font-size:90%;">Pilha de Protocolos para o Thread
+					<br>Extraído de: <a href=" http://threadgroup.org/technology/ourtechnology">http://threadgroup.org/technology/ourtechnology</a>
+					</p>
+					</div>
+					<li><a href="https://developer.apple.com/homekit/"><i>Apple HomeKit</i></a></li>
+					<p>
+					Sem nenhuma ligação com os outros grupos, a Apple desenvolveu seu próprio <i>framework</i> para casas inteligentes. É um projeto de código fechado, e exige que todos os dispositivos tenham a licença MFi (<i>Made for iOS</i>). O protocolo usado, HAP (<i>HomeKit Accessory Protocol</i>), é proprietário e define dois mecanismos de transporte: IP e o módulo Bluetooth de baixa energia. Acima da camada de transporte, está a API de controle que permite a interação com os dispositivos.
+					</p>
+					<li><a href="https://developers.google.com/brillo/"><i>Google Brillo</i></a></li>
+					<p>
+					Brillo é a solução da Google para a Internet das Coisas, contando com parceria das seguintes empresas: Intel, Marvell, Qualcomm, NXP e Imagination. A intenção é trazer velocidade, simplicidade e segurança ao desenvolvimento de aplicações para dispositivos pequenos e com pouca capacidade de processamento e memória, contando com Sistema Operacional embarcado (de código aberto e baseado em Android), serviços essenciais que permitem uma experiência inicial além de operar com escalabilidade, e um kit de desenvolvimento contendo ferramentas para construir produtos.
+					</p>
+					<p>
+					O Sistema Operacional Brillo utilizará o protocolo <a href="https://developers.google.com/weave/">Weave</a> para a comunicação entre dispositivos. Este utiliza os protocolos HTTPS e TCP, e suporta, dentre outros, os seguintes padrões: Wi-Fi, Ethernet e IEEE 802.15.4, este último utilizado também  pelo ZigBee e pelo Thread (e cujo acesso ao meio se baseia no protocolo CSMA-CA, acrônimo de <i>Carrier Sense Multiple Access with Collision Avoidance</i>). O usuário pode comunicar-se com o dispositivo ou sensor localmente via Bluetooth de baixa energia ou, caso o acesso seja remoto, utilizando serviços em nuvem via Wi-Fi.
+					</p>
+					<div align="center">
+					<img src="img/WeaveProtocol.jpg" alt="Weave Protocol">
+					<p>
+					Protocolo Weave
+					<br>Extraído de: <a href="http://events.linuxfoundation.org/sites/events/files/slides/Brillo%20and%20Weave%20-%20Introduction_v3_1.pdf ">http://events.linuxfoundation.org/sites/events/files/slides/Brillo%20and%20Weave%20-%20Introduction_v3_1.pdf </a>
+					</p>
+					</div>
+		    	</ul>
+		    	</p>
+		    	<li><h4 id="probcomp">Problemas computacionais</h4></li>
+		    	<p>
+		    	Conforme cresce a quantidade de dispositivos conectados, aumenta também a quantidade de dados gerados e transmitidos. Um problema que surge, portanto, é relacionado ao gerenciamento desses dados e à capacidade de transformá-los em informações úteis, auxiliando no processo de tomada de decisões e impulsionando ações concretas, conforme a Internet das Coisas potencialmente promete.
+		    	</p>
+		    	<p>
+				Surgem, portanto, desafios relacionados à manipulação e análise dos dados coletados. Neste contexto, vem aumentando o número de soluções que usam tecnologias de <i>Big Data</i> ou de Computação em Nuvem e que podem resolver este problema, ou pelo menos diminuí-lo.
+				</p>
+				<p>
+				Além disso, podemos notar que a Internet das Coisas necessitará de uma infraestrutura distribuída em larga escala para atender a demanda de vários dispositivos se conectando ao mesmo tempo. Neste aspecto, há uma carência enorme pela capacidade de rede. Haverá uma frequência relevante de um grande volume de dados trafegando na internet e, por consequência, precisaremos de maior abrangência do acesso a rede e infraestruturas de armazenamento desses dados.
+				</p>
+				<p>
+				A tecla mais pressionada ultimamente sobre a IdC é a questão da segurança. Bilhões de dispositivos conectados na rede significam bilhões de portas de acesso possíveis para uma invasão virtual. É crucial que cada um desses novos aparelhos esteja assegurado contra eventuais tentativas de <i>hacking</i>. Por exemplo, uma empresa de IdC no Reino Unido implantou suas lâmpadas e interruptores inteligentes em uma casa e pediu a um <i>hacker</i> para tentar acessar o computador pessoal dos moradores da casa. Através de uma dessas lâmpadas inteligentes que estava conectada à rede no momento, o <i>hacker</i> criou uma porta que abriu caminho direto para os PCs da casa.
+				</p>
+				<p>
+				Outra questão se deve à maneira como os servidores são preparados para atender a demanda atualmente. Pensando mais em um grande volume de dados e menos dispositivos, as infraestruturas de redes conseguem atender minimamente a população de uma grande cidade. Porém, a IdC criará um novo paradigma. Com mais dispositivos que geram menos volume de dados individualmente, os <i>Data Centers</i> podem não conseguir ter a disponibilidade de atender todos ao mesmo tempo. Isso será um gargalo em situações mais emergenciais, como situações médicas. Sem um dimensionamento adequado, os problemas que necessitam de atendimento imediato não serão rastreados prontamente, descartando o propósito inicial da IdC de sempre estar conectado.
+				</p>
+		    	<li><h4 id="privacidade">Privacidade</h4></li>
+		    	<p>
+		    	Considerando-se os massivos volumes de dados envolvidos, e a crescente preocupação com a privacidade, devem ser amplamente discutidas quais informações podem ser obtidas, usadas ou compartilhadas. Para isso, devem surgir padrões e práticas comuns, para garantir a segurança das informações.
+		    	</p>
+		    	<p>
+		    	Por ser um assunto que envolve fatores humanos, este problema será discutido com mais detalhes na seção <a href="#pdp">O Problema da Privacidade.</a>
+		    	</p>
+		    </ul>
+
 			<p>
 			<h3 id="qps">Questões Políticas e Sociais</h3>
 			<p>
