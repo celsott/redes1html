@@ -19,6 +19,9 @@
 		<li><a href="#commonuser">Para o Usuário Comum</a></li>
 		<li><a href="#business">Nos Negócios</a></li>
 		<li><a href="#aplicacao"><b>Camada de Aplicação</b></a></li>
+		<li><a href="#mqtt">MQTT</a></li>
+		<li><a href="#coap">CoAP</a></li>
+		<li><a href="#compare">Comparação</a></li>
 		<li><a href="#teccom"><b>Tecnologias de Comunicação</b></a></li>
 		<li><a href="#desafios"><b>Desafios</b></a></li> 
 		<li><a href="#energia">Energia</a></li> 
@@ -88,7 +91,323 @@
 			</p>
 
 			<h3 id="aplicacao">Camada de Aplicação</h3>
+			<p>
+				Como qualquer tecnologia de redes, o IdC precisa de um protocolo para a camada de aplicação padrão. A indústria, percebendo esta demanda, começou a adaptar protocolos existentes e a criar novos protocolos voltados para o IdC. Alguns que conquistaram certa aderência no mercado são:
+			</p>
+			<ul>
+				<li>
+					MQTT (Message Queuing Telemetry Transport): protocolo de porte leve voltado para troca de mensagens.
+				</li>
+				<li>
+					CoAP (Constrained Application Protocol): foca na transferência de documentos web, similar ao protocolo HTTP. Porém, é voltado para dispositivos restritos, ou seja, que possuem recursos limitados.
+				</li>
+				<li>
+					XMPP-IoT (Extensible Messalina and Presence Protocol for IoT): através de arquivos XML, produz comunicação baseado em mensagens instantâneas de leitura e escrita usando TCP.
+				</li>
+				<li>
+					RESTful HTTP (Representational State Transfer HTTP): trabalha usando o protocolo HTTP em LLNs (Low-power and Lossy Networks) de pequena escala, como gerenciamento domiciliar remoto.
+				</li>
+				<li>
+					DDS (Data Distribution Service): protocolo centrado em dados feito para integrar dispositivos inteligentes de alta performance.
+				</li>
+				<li>
+					AMQP (Advanced Message Queuing Protocol): protocolo com um sistema de filas centrado em mensagens com o propósito de permitir a comunicação entre servidores.
+				</li>
+			</ul>
+			<p>
+				Podemos citar o MQTT e o CoAP como os protocolos mais promissores para dispositivos menores, situados em ambientes com menos recursos disponíveis. Em vista disso, esses protocolos serão analisados mais a fundo.
+			</p>
+			<h4 id="mqtt">MQTT</h4>
+			<p>	
+				Possui arquitetura cliente/servidor com um protocolo de troca de mensagens no estilo publicar/inscrever (publish/subscribe). Todo dispositivo é um cliente, que se conecta a um servidor, denominado de corretor (broker). Usa-se comunicação TCP para este fim.
+			</p>
+			<p>
+				O MQTT é orientado a mensagens, sendo que todas as mensagens devem ser publicadas para um endereço, chamado de tópico (topic). Os clientes podem se inscrever em mais de um tópico, recebendo todas as mensagens enviadas para tais tópicos.
+			</p>
+			<p>
+				Ilustrando esse sistema, imaginemos um sistema com um corretor e três clientes: A, B e C. De início, os clientes B e C se inscrevem no tópico “temperatura” (“temperature”).
+			</p>
+			<div align="center">
+					<img src="img/exemplo1.png" alt="Exemplo Parte 1">
+					<p style="font-size:90%;">Clientes B e C realizam comando de inscrição
+					<br>Extraído de: <a href="http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php"> http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php</a>
+					</p>
+			</div>
+			<p>
+				Após serem adicionados ao tópico, o cliente A publica o valor “22.5” neste mesmo endereço. Com isso, o corretor distribui a mensagem para todos os clientes que se inscreveram no tópico.
+			</p>
+			<div align="center">
+					<img src="img/exemplo2.png" alt="Exemplo Parte 2">
+					<p style="font-size:90%;">Cliente A realiza comando de publicação
+					<br>Extraído de: <a href="http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php"> http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php</a>
+					</p>
+			</div>
+			<p>
+				O MQTT possui três níveis de Qualidade de Serviço (Quality of Service - QoS). Cada mensagem deve ter seu QoS previamente selecionado, para que o corretor faça a distribuição apropriada. Os níveis são:
+			</p>
+			<ul>
+				<li>
+					QoS 0: No máximo uma vez. As mensagens são enviadas utilizando-se a capacidade total do sistema ambiente. Podem ocorrer perdas de mensagens.
+				</li>
+				<li>
+					QoS 1: Ao menos uma vez. As mensagens são asseguradas de chegar ao destino. Entretanto, podem ocorrer mensagens duplicadas.
+				</li>
+				<li>
+					QoS 2: Exatamente uma vez. As mensagens são asseguradas de chegar ao destino em uma única vez.
+				</li>
+			</ul>
+			<p>
+				Normalmente, em sistemas com MQTT, os dispositivos estão concentrados em uma única localização. Dito isso, e considerando que o protocolo não possui comunicação direta D2D, o MQTT é um sistema bem simples, oferecendo uma rápida implementação com poucas opções de controle. Além disso, o sistema não funciona relativamente em alta velocidade.
+			</p>
+			<p>
+				Vale notar que o MQTT não possui filas, ou seja, mensagens antigas não são guardadas pelo corretor.
+			</p>
+			<div align="center">
+					<img src="img/mqtt.gif" alt="MQTT">
+					<p style="font-size:90%;">Protocolo MQTT realiza comunicação entre agrupamentos de sensores
+					<br>Extraído de: <a href="http://electronicdesign.com/iot/understanding-protocols-behind-internet-things"> http://electronicdesign.com/iot/understanding-protocols-behind-internet-things</a>
+					</p>
+			</div>
+			<p>
+				Para uma camada de segurança extra, os corretores do MQTT podem pedir por um nome de usuário e senha para cada cliente que deseja se conectar ao sistema. Ainda, para garantir privacidade, a conexão pode ser encriptada usando SSL/TLS.
+			</p>
+			<h4 id="coap">CoAP</h4>
+			<p>
+				Contrastando com o MQTT, o CoAP roda em cima do UDP, também com arquitetura cliente/servidor. Seu foco esta na interoperabilidade com a web.
+			</p>
+			<p>
+				Em parte, é similar ao HTTP. Porém, como os dispositivos de IoT normalmente operam com banda e energia limitadas, os pacotes do CoAP são muito menores. Bitmaps de strings até inteiros são usados extensivamente para economizar espaço. Os pacotes são passados in place, ou seja, no espaço de memória de um pacote anterior. Assim, há uma economia de RAM nos dispositivos.
+			</p>
+			<p>
+				A comunicação entre o cliente e servidor é feito a partir do sistema GET, PUT, POST e DELETE. Explicando um pouco sobre cada um deles:
+			</p>
+			<ul>
+				<li>
+					GET: pega o valor da informação desejada a partir do recurso selecionado.
+				</li>
+				<li>
+					PUT: O recurso especificado é modificado com a informação enviada. Caso o recurso não exista, é criado um novo já com a nova informação.
+				</li>
+				<li>
+					POST: A informação enviada é processada. A função que processa a informação é dependente do servidor selecionado. Normalmente, resulta em um recurso sendo criado ou atualizado.
+				</li>
+				<li>
+					DELETE: O recurso selecionado é deletado.
+				</li>
+			</ul>
+			<p>
+				A troca de mensagens entre o cliente e servidor é feito na base do pedido/resposta (request/response). Clientes realizam pedidos ao servidor; servidores mandam de volta uma resposta, se necessário.
+			</p>
+			<p>
+				Com relação a qualidade de serviço, as mensagens podem ser marcadas com “confirmáveis” ou “não-confirmáveis”. Mensagens confirmáveis devem ser respondidas pelo remetente com um pacote ACK, enquanto que mensagens não-confirmáveis seguem o estilo “disparar e esquecer” (“fire and forget”).
+			</p>
+			<p>
+				Para servir de exemplo, temos um esquema simples:
+			</p>
+			<div align="center">
+					<img src="img/coap.png" alt="CoAP">
+					<p style="font-size:90%;">Exemplo de comunicação usando o protocolo CoAP
+					<br>Extraído de: <a href="http://pt.slideshare.net/vgholkar/io-t-protocolsoscon2014"> http://pt.slideshare.net/vgholkar/io-t-protocolsoscon2014</a>
+					</p>
+			</div>
+			<p>
+				O CoAP também possui um sistema de eventos embutido. Com a habilidade de observar um recurso, um servidor pode se manter informado com quaisquer mudanças de estado, permitindo que o servidor estabeleça um fluxo de dados contínuo sobre um recurso com seus clientes. Para cancelar o fluxo, basta que um ponto da conexão encerre o envio contínuo.
+			</p>
+			<p>
+				Em termos de segurança, o protocolo CoAP possui o DTLS (Datagram Transport Layer Security). Dispositivos com a capacidade para DTLS que usam o CoAP podem usar criptografias RSA e AES ou ECC e AES. Os parâmetros de segurança são equivalentes a uma chave de 3072 bits de RSA. Mesmo assim, o protocolo roda sem problemas em dispositivos de pequeno porte.
+			</p>
+			<h4 id="compare">Comparação</h4>
+			<p>
+				Ambos protocolos são amplamente utilizados pela indústria de tecnologia. Contudo, há diferenças fundamentais entre eles.
+			</p>
+			<p>
+				O protocolo MQTT possui uma comunicação muitas-para-muitos, ou seja, as mensagens são distribuídas entres vários clientes. Cabe ao servidor rotear as mensagens para os clientes certos. Não há suporte para metadados. Assim, os clientes precisam saber de antemão sobre o formato dos dados para que a comunicação possa ocorrer.
+			</p>
+			<p>
+				O protocolo CoAP realiza uma comunicação um-para-um. As informações são transferidas diretamente entre cliente e servidor. Entretanto, ele possui suporte para identificação do conteúdo.
+			</p>
 			<h3 id="teccom">Tecnologias de Comunicação</h3>
+			<p>
+				A gama de dispositivos de IdC é enorme, aparecendo desde aplicações de grande porte na indústria, como usinas hidroelétricas, até SmartCities e Wearables. Para cada aplicação, devemos usar uma tecnologia de comunicação apropriada. As 10 que mais parecem se destacar no meio são:
+			</p>
+			<ul>
+				<li>
+					RFID (Radio-Frequency Identification): o sistema usa etiquetas ou rótulos equipados aos objetos que devem ser identificados.
+					<ul>
+						<li>
+							Frenquência: de 120 MHz até 10 GHz
+						</li>
+						<li>
+							Alcance: 10cm até 200m
+						</li>
+						<li>
+							Taxa: Varia para cada aplicação
+						</li>
+						<li>
+							Exemplos: Pedágios, acesso a lugares restritos
+						</li>
+					</ul>
+				</li>
+				<li>
+					Bluetooth: baseado em microchips transmissores de baixo custo. É usado um sistema de comunicação via rádio. Possui a versão Bluetooth Smart para comunicação de baixo consumo de energia.
+					<ul>
+						<li>
+							Frenquência: 2.4GHz (ISM)
+						</li>
+						<li>
+							Alcance: 100m
+						</li>
+						<li>
+							Taxa: 1Mbps
+						</li>
+						<li>
+							Exemplos: Headphone sem fio, roupas para esporte inteligentes
+						</li>
+					</ul>
+				</li>
+				<li>
+					WiFi: pertence a classe WLAN. Este padrão opera em faixas de frequências que não necessitam de licença.
+					<ul>
+						<li>
+							Frenquência: 2.4 ou 5 GHz
+						</li>
+						<li>
+							Alcance: 100m
+						</li>
+						<li>
+							Taxa: máximo de 600Mbps
+						</li>
+						<li>
+							Exemplos: roteadores, tablets
+						</li>
+					</ul>
+				</li>
+				<li>
+					NFC: provê uma conexão bilateral bem simples, através de uma indução eletromagnética entre dois dispositivos.
+					<ul>
+						<li>
+							Frenquência: 13.56MHz (ISM)
+						</li>
+						<li>
+							Alcance: 10cm
+						</li>
+						<li>
+							Taxa: 106, 212 ou 424 Kbps
+						</li>
+						<li>
+							Exemplos: Cartões de crédito, Bilhete Único
+						</li>
+					</ul>
+				</li>
+				<li>
+					Zigbee: baseado em redes de malha (redes mesh). Seus chips são integrados em rádios e microcontroladores. Possui baixo consumo de energia.
+					<ul>
+						<li>
+							Frenquência: 2.4GHz
+						</li>
+						<li>
+							Alcance: 100m
+						</li>
+						<li>
+							Taxa: 250Kbps
+						</li>
+						<li>
+							Exemplos: Saúde, controle de hortas
+						</li>
+					</ul>
+				</li>
+				<li>
+					Z-Wave: voltado para automação de casas. Usa comunicação por rádio-frequência em baixa-latência.
+					<ul>
+						<li>
+							Frenquência: 900MHz (ISM)
+						</li>
+						<li>
+							Alcance: 30m
+						</li>
+						<li>
+							Taxa: 9.6, 40 ou 100 Kbps
+						</li>
+						<li>
+							Exemplos: Automação doméstica, controle de iluminação
+						</li>
+					</ul>
+				</li>
+				<li>
+					Sigfox: tecnologia de alto alcance. Usa uma técnica chamada Banda Ultra Estreita (Ultra Narrow Band - UNB) para enviar dados a baixas velocidades em dispositivos de pouca energia a longo alcance.
+					<ul>
+						<li>
+							Frenquência: 900MHz
+						</li>
+						<li>
+							Alcance: 50km em regiões rurais; 10km em regiões urbanas
+						</li>
+						<li>
+							Taxa: 10 até 1000 bps
+						</li>
+						<li>
+							Exemplos: Segurança urbana, sensoriamento ambiental
+						</li>
+					</ul>
+				</li>
+				<li>
+					EnOcean: converte mirar-energias advindas de movimentos mecânicos do ambiente para manter sua conexão sem fio funcionando.
+					<ul>
+						<li>
+							Frenquência: 315, 868 ou 902 MHz
+						</li>
+						<li>
+							Alcance: 300m
+						</li>
+						<li>
+							Taxa: 125Kbps
+						</li>
+						<li>
+							Exemplos: Interruptores e controladores sem fio
+						</li>
+					</ul>
+				</li>
+				<li>
+					Weightless: A partir de uma estação base, a informação trafega por ondas de rádio transmitidas em canais de TV desocupados.
+					<ul>
+						<li>
+							Frenquência: 470 - 790 MHz (Depende da legislação)
+						</li>
+						<li>
+							Alcance: 10km
+						</li>
+						<li>
+							Taxa: 1Kbps até 10Mbps
+						</li>
+						<li>
+							Exemplos: Sensores de trânsito, monitoramento industrial
+						</li>
+					</ul>
+				</li>
+				<li>
+					GSM: protocolo baseado em redes digitais de celulares, através de uma rede de comutação de circuitos.
+					<ul>
+						<li>
+							Frenquência: Varia de país e continente
+						</li>
+						<li>
+							Alcance: via satélite
+						</li>
+						<li>
+							Taxa: 9.6Kbps
+						</li>
+						<li>
+							Exemplos: Celulares, medidores inteligentes
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div align="center">
+					<img src="img/tech_comu.png" alt="Tecnologias de Comunicação">
+					<p style="font-size:90%;">Tecnologias de Comunicação e suas respectivas áreas de abrangência
+					<br>Extraído de: <a href="http://postscapes.com/internet-of-things-technologies"> http://postscapes.com/internet-of-things-technologies</a>
+					</p>
+			</div>
 			
 
 		    <h3 id="desafios"> Desafios </h3>
@@ -146,7 +465,7 @@
 		    		Esta entidade tem por objetivo ajudar a unificar os padrões de IdC, de modo que empresas e desenvolvedores possam criar produtos ou aparelhos que trabalhem juntos. Com seus protocolos, especificações e projetos de código aberto, vários serviços e aparelhos poderão se comunicar de forma segura e transparente. Conta com membros importantes, sendo os principais: Arris, CableLabs, Cisco, Electrolux, GE Digital, Intel, Microsoft, Qualcomm e Samsung.
 					</p>
 					<p>
-					O <i>framework</i> deste grupo chama-se IoTivity, e utiliza o Protocolo de Aplicação Restrita (CoAP, vide seção de <a href="#aplicacao">Aplicação</a>), já que visa dispositivos com baixa capacidade de processamento. Para a camada de transporte, faz uso do protocolo UDP. Nota-se pela imagem que pretende futuramente se adequar ao protocolo HTTP junto ao TCP. À esquerda, temos o bloco unificado. À direita, o mesmo para dispositivos limitados.
+					O <i>framework</i> deste grupo chama-se IoTivity, e utiliza o Protocolo de Aplicação Restrita (<a href="#coap">CoAP</a>), já que visa dispositivos com baixa capacidade de processamento. Para a camada de transporte, faz uso do protocolo UDP. Nota-se pela imagem que pretende futuramente se adequar ao protocolo HTTP junto ao TCP. À esquerda, temos o bloco unificado. À direita, o mesmo para dispositivos limitados.
 		    		</p>
 		    		<div align="center">
 		    		<img src="img/IoTivityProtocolStack.png" alt="IoTivity Protocol Stack">
@@ -256,8 +575,6 @@
     
             <h3 id="refer">Referências</h3>
             <p>
-            
-                
                 HIGGINBOTHAM, Stacey. <b>Companies need to share how they use our data. Here are some ideas.</b> Fortune, Julho de 2015. Disponível em: <a href="http://fortune.com/2015/07/06/consumer-data-privacy/">&lthttp://fortune.com/2015/07/06/consumer-data-privacy/&gt</a>. Acesso em 02/07/2016<br> <br>
                 ZANOLLI, Lauren. <b> Welcome To Privacy Hell, Also Known As The Internet Of Things</b>. Fast Company, março de 2015.Disponível em: <a href="http://www.fastcompany.com/3044046/tech-forecast/welcome-to-privacy-hell-otherwise-known-as-the-internet-of-things">&lthttp://www.fastcompany.com/3044046/tech-forecast/welcome-to-privacy-hell-otherwise-known-as-the-internet-of-things&gt</a>. Acesso em 04/07/2016 <br> <br>
                 ANDERSON, Janna; RAINIE, Lee. <b> The Internet of Things will Thrive by 2025.</b>PewResearchCenter, maio de 2014. Disponível em: <a href="http://www.pewinternet.org/files/2014/05/PIP_Internet-of-things_0514142.pdf">&lthttp://www.pewinternet.org/files/2014/05/PIP_Internet-of-things_0514142.pdf&gt</a>. Acesso em 03/07/2016 <br> <br>
@@ -273,8 +590,15 @@
 				PIRES, Paulo et al. <b>Plataformas para a Internet das Coisas</b>. SBRC, 2015. Disponível em: <a href="http://sbrc2015.ufes.br/wp-content/uploads/Ch3.pdf">&lthttp://sbrc2015.ufes.br/wp-content/uploads/Ch3.pdf&gt</a> Acesso em: 12/07/2016 <br><br> 
 				PRADO, Eduardo. <b>Internet das Coisas: Uma "Babel" de Protocolos</b>. Convergência Digital, setembro de 2014. Disponível em: <a href="http://convergenciadigital.uol.com.br/cgi/cgilua.exe/sys/start.htm?UserActiveTemplate=site&infoid=37911&sid=15">&lthttp://convergenciadigital.uol.com.br/cgi/cgilua.exe/sys/start.htm?UserActiveTemplate=site&infoid=37911&sid=15&gt</a> Acesso em: 09/07/2016 <br><br> 
 				CARTER, Jamie. <b>Which is the best Internet of Things platform?</b>. Techradar, agosto de 2015. Disponível em: <a href="http://www.techradar.com/news/world-of-tech/which-is-the-best-internet-of-things-platform--1302416">&lthttp://www.techradar.com/news/world-of-tech/which-is-the-best-internet-of-things-platform--1302416&gt</a> Acesso em: 10/07/2016 <br><br>
-
-
+				SHELBY et al. <b>The Constrained Application Protocol (CoAP)</b>. IETF, junho de 2014. Disponível em: <a href="https://tools.ietf.org/html/rfc7252#section-5.8.1">&lthttps://tools.ietf.org/html/rfc7252#section-5.8.1&gt</a> Acesso em: 11/07/2016 <br><br>
+				JAFFEY, Toby. <b> MQTT and CoAP, IoT Protocols</b>. Elipse Newsletter, fevereiro de 2014. Disponível em: <a href="http://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php">&lthttp://www.eclipse.org/community/eclipse_newsletter/2014/february/article2.php&gt</a> Acesso em: 11/07/2016 <br><br>
+				<b>Internet of Things Protocols & Standards</b>. Postscapes. Disponível em: <a href="http://postscapes.com/internet-of-things-protocols">&lthttp://postscapes.com/internet-of-things-protocols&gt</a> Acesso em: 11/07/2016 <br><br>
+				SCHNEIDER, Stan. <b>What’s The Difference Between DDS And AMQP?</b>. Electronic Design, abril de 2013. Disponível em: <a href="http://electronicdesign.com/embedded/what-s-difference-between-dds-and-amqp">&lthttp://electronicdesign.com/embedded/what-s-difference-between-dds-and-amqp&gt</a> Acesso em: 11/07/2016 <br><br>
+				SCHNEIDER, Stan. <b>Understanding The Protocols Behind The Internet Of Things</b>. Electronic Design, Outubro de 2013. Disponível em: <a href="http://electronicdesign.com/iot/understanding-protocols-behind-internet-things">&lthttp://electronicdesign.com/iot/understanding-protocols-behind-internet-things&gt</a> Acesso em: 11/07/2016 <br><br>
+				GUPTA, Rahul. <b>5 Things to Know About MQTT – The Protocol for Internet of Things</b>. IBM, setembro de 2014. Disponível em: <a href="https://www.ibm.com/developerworks/community/blogs/5things/entry/5_things_to_know_about_mqtt_the_protocol_for_internet_of_things?lang=en">&lthttps://www.ibm.com/developerworks/community/blogs/5things/entry/5_things_to_know_about_mqtt_the_protocol<br>_for_internet_of_things?lang=en&gt</a> Acesso em: 11/07/2016 <br><br>
+				DUFFY, Paul. <b>Beyond MQTT: A Cisco View on IoT Protocols</b>. Cisco Blogs, abril de 2013. Disponível em: <a href="http://blogs.cisco.com/digital/beyond-mqtt-a-cisco-view-on-iot-protocols">&lthttp://blogs.cisco.com/digital/beyond-mqtt-a-cisco-view-on-iot-protocols&gt</a> Acesso em: 11/07/2016 <br><br>
+				<b>Internet of Things Technologies</b>. Postscapes. Disponível em: <a href="http://postscapes.com/internet-of-things-technologies">&lthttp://postscapes.com/internet-of-things-technologies&gt</a> Acesso em: 12/07/2016 <br><br>
+				RS Components. <b>11 Internet of Things (IoT) Protocols You Need to Know About</b>. Design Spark, abril de 2015. Disponível em: <a href="http://www.rs-online.com/designspark/electronics/knowledge-item/eleven-internet-of-things-iot-protocols-you-need-to-know-about">&lthttp://www.rs-online.com/designspark/electronics/knowledge-item/eleven-internet-of-things-iot-protocols-you-need-to-know-about&gt</a> Acesso em: 12/07/2016 <br><br>
             </p>
 		</article>
       
